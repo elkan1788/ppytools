@@ -7,3 +7,4 @@ It's a common library utility that in **Python** project. Hope it can help you u
  
 # Test Report
 [PPyTools Rest Report](test/reports/ppytools_test_report.html)
+![PPyTools Rest Report](test/reports/ppytools_test_report.png)
