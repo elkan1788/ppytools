@@ -1,0 +1,15 @@
+# Pyton
+*.py[cod]
+*.so
+*.egg
+
+
+*.egg-info
+dist
+build
+
+# IDEA
+*.iml
+
+# MAC
+*/.DS_Store
