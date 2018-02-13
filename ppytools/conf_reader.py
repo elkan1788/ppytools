@@ -16,8 +16,6 @@ class ConfReader(object):
          values: Sections's value dict
     """
 
-    sections = []
-
     def __init__(self, *paths):
         """Init config reader
             Read config files's path then put all values into a dict.
