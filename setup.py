@@ -16,7 +16,7 @@ setup(
     description='utility that in **Python** project.',
     author='elkan1788',
     author_email='elkan1788@gmail.com',
-    license='MIT',
+    license='Apache License V2.0',
     install_requires=REQUIRES,
     packages=find_packages()
 )
