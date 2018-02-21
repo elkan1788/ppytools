@@ -19,7 +19,6 @@ class TestEmailClientCase(unittest.TestCase):
         work_dir = os.path.dirname(os.path.realpath(__file__))
         email_conf = os.path.join(work_dir, 'conf/email_config.ini')
         cls.cr = ConfReader(email_conf)
-        logger.info(cls.cr.getAllValues())
 
         cls.to = ['elkan1788@gmail.com']
         cls.cc = ['2292706174@qq.com']

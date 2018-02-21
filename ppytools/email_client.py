@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 # __author__ = 'elkan1788@gmail.com'
 
 from excepts.email_except import *
@@ -15,7 +15,7 @@ import smtplib
 import sys
 
 reload(sys)
-sys.setdefaultencoding('utf-8')
+sys.setdefaultencoding('UTF-8')
 
 logger = logging.getLogger(__name__)
 
@@ -138,7 +138,7 @@ class EmailClient(object):
         try:
             self.smtp_conn.sendmail(self.smtp_user, to+cc, email_cnt.as_string())
             timer_spent = (datetime.datetime.now() - timer_start).seconds
-            logger.info('Email send successful in %s seconds. To users: %s', timer_spent, ','.join(to+cc))
+            logger.info('Send email[%s] success in %s seconds. To users: %s', subject, timer_spent, ','.join(to+cc))
         except Exception, e:
             raise SendEmailException("Send email[%s] failed!!! Case: %s" % (subject, str(e)))
 
