@@ -5,17 +5,17 @@ python:
   - "2.7"
 
 virtualenv:
-  system_site_packages: true
+  system_site_packages: false
 
 sudo: required
 
 before_install:
-  - sudo export TZ='Asia/Shanghai'
+  - export TZ='Asia/Shanghai'
   - sed -i "s/email_account/$smtp_user/g" ./test/conf/email_config.ini
   - sed -i "s/email_passwd/$smtp_pswd/g" ./test/conf/email_config.ini
 
 install:
-  - sudo pip install -r requirements.txt
+  - pip install -r requirements.txt
   - python setup.py build
   - python setup.py install
 
