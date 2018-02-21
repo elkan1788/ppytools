@@ -2,7 +2,7 @@
 # __author__ = 'elkan1788@gmail.com'
 from unittest import TestSuite
 
-from test.HTMLTestRunner import HTMLTestRunner
+from HTMLTestRunner import HTMLTestRunner
 import logging
 import os
 import unittest
