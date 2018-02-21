@@ -52,14 +52,14 @@ class ConfReader(object):
                 value = self.cp.get(section, option, 'None')
                 self.values[section][option] = value
 
-    def sections(self):
-        """Find config files's section name
+    def getSections(self):
+        """Get config files's section name
 
         :return: all section name
         """
         return self.cp.sections()
 
-    def get_keys(self, section):
+    def getKeys(self, section):
         """Get section's keys
 
         :param section: section name
@@ -67,14 +67,14 @@ class ConfReader(object):
         """
         return self.cp.options(section)
 
-    def get_all_values(self):
+    def getAllValues(self):
         """Get sections's values
 
         :return: all sections values dict
         """
         return self.values
 
-    def get_values(self, section):
+    def getValues(self, section):
         """Get section's value
 
         :param section: section name
@@ -82,7 +82,7 @@ class ConfReader(object):
         """
         return self.values[section]
 
-    def get_value(self, section, key):
+    def getValue(self, section, key):
         """Get section key value
 
         :param section: section name
@@ -91,12 +91,12 @@ class ConfReader(object):
         """
         return self.values[section][key]
 
-    def get_tuple(self, section):
+    def getAsTuple(self, section):
         """Get section name tuple
 
         :param section: section name
         :return: tuple object
         """
-        keys = self.get_keys(section)
-        value_dict = self.get_values(section)
+        keys = self.getKeys(section)
+        value_dict = self.getValues(section)
         return namedtuple(section, keys)(**value_dict)

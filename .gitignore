@@ -13,3 +13,6 @@ build
 
 # MAC
 */.DS_Store
+
+# Others
+atest_py.py
