@@ -16,3 +16,4 @@ build
 
 # Others
 atest_py.py
+*.html

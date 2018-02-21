@@ -8,6 +8,12 @@
 It's a common library utility that in **Python** project. Hope it can help you usefully on work or others.
  
  
-# Test Report
-[PPyTools Rest Report](test/reports/ppytools_test_report.html)
+# Test Report & Guide
 ![PPyTools Rest Report](test/reports/ppytools_test_report.png)
+
+```shell
+export PYTHONPATH=your project real path
+cd ./test
+python -u suites_start.py
+```
+
