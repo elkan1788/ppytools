@@ -18,7 +18,13 @@ class TestConfReaderCase(unittest.TestCase):
         name_conf = os.path.join(work_dir, 'conf/name_config.ini')
         author_conf = os.path.join(work_dir, 'conf/author_config.ini')
         cls.cr = ConfReader(author_conf, name_conf)
-        logger.info(cls.cr.getAllValues())
+        logger.info('Configure file info: ')
+        for (k, v) in cls.cr.getAllValues().items():
+            logger.info('%s: ', k)
+            if isinstance(v, dict):
+                for (ck, cv) in v.items():
+                    logger.info('%s: %s', ck, cv)
+
 
     @classmethod
     def tearDownClass(cls):

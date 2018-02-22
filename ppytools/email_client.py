@@ -43,11 +43,11 @@ class EmailClient(object):
 
     def __init__(self, server, port, user, passwd, mode='PUB'):
         self.smtp_server = server
-        self.smtp_port = int(port)
-        self.smtp_user = user
-        self.smtp_pswd = passwd
-        self.smtp_mode = mode
-        self.smtp_conn = None
+        self.smtp_port   = int(port)
+        self.smtp_user   = user
+        self.smtp_pswd   = passwd
+        self.smtp_mode   = mode
+        self.smtp_conn   = None
         self.__login__()
 
     def __login__(self):

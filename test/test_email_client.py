@@ -52,4 +52,4 @@ class TestEmailClientCase(unittest.TestCase):
         body = '<p><span style="font-size:18px;color:#ff0000;font-weight:bold;">PPyTools</span>' \
                ' is a very useful tools classes in Python.</p> <p>With attachment file.</p>'
         self.ec.send(self.to, self.cc, subject, body, self.email_att, True)
-
+#
