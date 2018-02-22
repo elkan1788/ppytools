@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
-import logging
+
 
 from ppytools.csv_helper import write, getIdNameDict
 
+import logging
 import os
 import unittest
 
@@ -25,6 +26,9 @@ class TestCSVHelperCase(unittest.TestCase):
 
     def test_a_Write(self):
         data = [[0, '中国'], [1, 'Python'], [2, 'Java'], [3, 'Go'], [4, 'Ruby'], [5, 'C'], [6, 'C#']]
+        logger.info('CSV data: ')
+        for row in data:
+            logger.info('id: %s, name: %s', row[0], row[1])
         write(self.path, None, data)
 
         self.assertGreaterEqual(os.path.getsize(self.path), 0)

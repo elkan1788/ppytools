@@ -7,7 +7,8 @@ import logging
 import os
 import unittest
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s [%(levelname)s] {%(name)-10s} - %(message)s')
+logging.basicConfig(level=logging.DEBUG, encode='UTF-8', encoding='UTF-8',
+                    format='%(asctime)s [%(levelname)s] {%(name)-10s} - %(message)s')
 
 
 if __name__ == '__main__':
