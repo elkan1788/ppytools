@@ -1,6 +1,8 @@
 # -*- -*- coding: utf-8 -*- -*-
 # __author__ = 'elkan1788@gmail.com'
 
+from ppytools.lang.timer_helper import timeMeter
+
 import codecs
 import csv
 import logging
@@ -9,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 BOM_FORMAT = codecs.BOM_UTF8
 
-
+@timeMeter()
 def write(path, head, data):
     try:
         with open(unicode(path, 'UTF-8'), 'wb') as csv_file:
@@ -26,7 +28,7 @@ def write(path, head, data):
     except Exception, e:
         raise Exception("Write a CSV file failed!!! --> %s, Case: %s" % (path, str(e)))
 
-
+@timeMeter()
 def getIdNameDict(path):
     id_name_dict = dict()
     try:

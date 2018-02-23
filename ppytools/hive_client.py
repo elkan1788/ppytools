@@ -74,8 +74,6 @@ class HiveClient(object):
 
     @timeMeter()
     def execUpdate(self, sql):
-        logger.info('SQL statement: %s' % sql)
-
         try:
             cur = self.getConn().cursor()
             cur.execute(sql)
@@ -100,5 +98,3 @@ class HiveClient(object):
         logger.info('Hive client count completed, Found %d items.', count[0])
 
         return count[0]
-
-
