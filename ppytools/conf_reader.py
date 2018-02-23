@@ -2,7 +2,6 @@
 # __author__ = 'elkan1788@gmail.com'
 
 from collections import namedtuple
-from ppytools.lang.timer_helper import timeMeter
 
 import ConfigParser
 import logging
@@ -18,7 +17,6 @@ class ConfReader(object):
          values: Sections's value dict
     """
 
-    @timeMeter()
     def __init__(self, *paths):
         """Init config reader
             Read config files's path then put all values into a dict.
