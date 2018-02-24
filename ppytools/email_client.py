@@ -137,7 +137,7 @@ class EmailClient(object):
 
         try:
             self.smtp_conn.sendmail(self.smtp_user, to+cc, email_cnt.as_string())
-            logger.info('Send email[%s] success. To users: %s', subject, ','.join(to+cc))
+            logger.info('Send email[%s] success. To users: %s.', subject, ','.join(to+cc))
         except Exception, e:
             raise SendEmailException("Send email[%s] failed!!! Case: %s" % (subject, str(e)))
 

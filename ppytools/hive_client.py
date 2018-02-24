@@ -33,15 +33,13 @@ class HiveClient(object):
             conn_args = {'host': self.host, 'port': self.port, 'username': self.user, 'database': self.db}
             try:
                 self.conn = hive.connect(**conn_args)
-                logger.info('Hive server connect is ready. Transport open: %s',
-                            str(self.conn.__getattribute__('_transport').is_open()))
             except Exception, e:
                 raise Exception('Get Hive server connect failed!!!', e)
 
         return self.conn
 
     def closeConn(self):
-        if self.conn is not None:
+        if self.conn:
             self.conn.close()
             self.conn = None
 
