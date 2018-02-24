@@ -4,8 +4,8 @@
 from excepts.email_except import *
 from lang.strings_helper import Strings
 from ppytools.compress_helper import zipFile
+from ppytools.lang.timer_helper import timeMeter
 
-import datetime
 import email.MIMEBase
 import email.MIMEMultipart
 import email.MIMEText
@@ -112,6 +112,7 @@ class EmailClient(object):
                 '''
                 self._del_files[:] = []
 
+    @timeMeter()
     def send(self, to, cc, subject, body, att=None, delete=False):
         """Send an email action.
 
@@ -123,7 +124,6 @@ class EmailClient(object):
         :param delete: whether delete att
         :return: True or False
         """
-        timer_start = datetime.datetime.now()
         email_cnt = email.MIMEMultipart.MIMEMultipart()
         email_cnt['From'] = self.smtp_user
         email_cnt['To'] = ';'.join(to)
@@ -137,8 +137,7 @@ class EmailClient(object):
 
         try:
             self.smtp_conn.sendmail(self.smtp_user, to+cc, email_cnt.as_string())
-            timer_spent = (datetime.datetime.now() - timer_start).seconds
-            logger.info('Send email[%s] success in %s seconds. To users: %s', subject, timer_spent, ','.join(to+cc))
+            logger.info('Send email[%s] success. To users: %s.', subject, ','.join(to+cc))
         except Exception, e:
             raise SendEmailException("Send email[%s] failed!!! Case: %s" % (subject, str(e)))
 

@@ -1,2 +1,3 @@
 pip
 mock>=2.0.0
+PyHive>=0.2.1

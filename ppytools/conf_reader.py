@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
+from collections import namedtuple
+
 import ConfigParser
 import logging
-from collections import namedtuple
 
 logger = logging.getLogger(__name__)
 
