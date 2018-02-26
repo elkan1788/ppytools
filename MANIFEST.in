@@ -1,0 +1,2 @@
+include *.rst requirements.txt
+prune test
