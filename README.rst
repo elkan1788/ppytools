@@ -27,7 +27,8 @@ Test Report
 Run Test Guide
 --------------
 
-::
+.. code-block::
+
     export PYTHONPATH=your project real path
     cd ./test
     python -u suites_start.py
@@ -36,8 +37,10 @@ Run Test Guide
 Install
 =======
 
-::
+.. code-block::
+
     pip install ppytools2
+    from ppytools.xxx import xxx
 
 History
 =======
