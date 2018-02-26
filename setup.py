@@ -12,7 +12,7 @@ PPyTools setup scripts.
 """
 setup(
     name='ppytools2',
-    version='1.0.1',
+    version='1.0.2',
     author='elkan1788',
     author_email='elkan1788@gmail.com',
     description='A common library utility that in Python project.',
