@@ -24,7 +24,10 @@ Test Report
     :target: https://github.com/elkan1788/ppytools
     :alt: Test Report Screen Snapshot
 
-.. code-block:: shell
+Run Test Guide
+--------------
+
+::
     export PYTHONPATH=your project real path
     cd ./test
     python -u suites_start.py
@@ -33,12 +36,10 @@ Test Report
 Install
 =======
 
-.. code-block:: shell
+::
     pip install ppytools2
 
 History
 =======
 
-.. _reference: https://github.com/elkan1788/ppytools/blob/master/HISTORY.rst
-
-
+`@history <https://github.com/elkan1788/ppytools/blob/master/HISTORY.rst>`_
