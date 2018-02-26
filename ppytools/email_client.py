@@ -113,14 +113,14 @@ class EmailClient(object):
                 self._del_files[:] = []
 
     @timeMeter()
-    def send(self, to, cc, subject, body, att=None, delete=False):
+    def send(self, to, cc, subject, body, atts=None, delete=False):
         """Send an email action.
 
         :param to: receivers list
         :param cc: copy user list
         :param subject: email title
         :param body: email content body
-        :param att: email attachments
+        :param atts: email attachments
         :param delete: whether delete att
         :return: True or False
         """
@@ -133,11 +133,24 @@ class EmailClient(object):
         body_html = email.MIMEText.MIMEText(body.encode(CHARSET_ENCODING), _subtype='html', _charset=CHARSET_ENCODING)
         email_cnt.attach(body_html)
 
-        self.__add_att__(email_cnt, att, delete)
+        self.__add_att__(email_cnt, atts, delete)
 
         try:
             self.smtp_conn.sendmail(self.smtp_user, to+cc, email_cnt.as_string())
-            logger.info('Send email[%s] success. To users: %s.', subject, ','.join(to+cc))
+
+            with_att_msg = 'Empty'
+            if atts:
+                for i,att  in enumerate(atts):
+                    atts[i] = att[att.rindex('/')+1:]
+
+                with_att_msg = ','.join(atts)
+                '''Flush memory
+                '''
+                atts[:] = []
+
+            logger.info('Send email[%s] success.', subject)
+            logger.info('To users: %s.', ','.join(to+cc))
+            logger.info('With attachments: %s.', with_att_msg)
         except Exception, e:
             raise SendEmailException("Send email[%s] failed!!! Case: %s" % (subject, str(e)))
 
