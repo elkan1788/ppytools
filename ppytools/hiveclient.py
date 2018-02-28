@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-from ppytools.lang.timer_helper import timeMeter
+from ppytools.lang.timerhelper import timeMeter
 from pyhive import hive
 
 import logging

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-from ppytools.conf_reader import ConfReader
+from ppytools.cfgreader import ConfReader
 
 import unittest
 import logging

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-from excepts.email_except import *
-from lang.strings_helper import Strings
-from ppytools.compress_helper import zipFile
-from ppytools.lang.timer_helper import timeMeter
+from excepts.emailexcept import *
+from lang import strings
+from ppytools.compresshelper import zipFile
+from ppytools.lang.timerhelper import timeMeter
 
 import email.MIMEBase
 import email.MIMEMultipart
@@ -56,11 +56,11 @@ class EmailClient(object):
         :return: SMTP server connect
         """
         if self.smtp_conn is None:
-            if Strings.equalsIgnoreCase(self.smtp_mode, 'TLS'):
+            if strings.equalsignore(self.smtp_mode, 'TLS'):
                 logger.debug('Email SMTP server used TLS mode protocol.')
                 self.smtp_conn = smtplib.SMTP(self.smtp_server, self.smtp_port)
                 self.smtp_conn.starttls()
-            elif Strings.equalsIgnoreCase(self.smtp_mode, 'SSL'):
+            elif strings.equalsignore(self.smtp_mode, 'SSL'):
                 logger.debug('Email SMTP server used SSL mode protocol.')
                 self.smtp_conn = smtplib.SMTP_SSL(self.smtp_server, self.smtp_port)
             else:

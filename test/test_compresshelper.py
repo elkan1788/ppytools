@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-from ppytools.compress_helper import zipFile, tarFile
+from ppytools.compresshelper import zipFile, tarFile
 
 import unittest
 import logging

@@ -2,7 +2,7 @@
 # __author__ = 'elkan1788@gmail.com'
 
 from mock import patch
-from ppytools.hive_client import HiveClient
+from ppytools.hiveclient import HiveClient
 
 import logging
 import mock
@@ -16,7 +16,7 @@ class TestHiveClientCase(unittest.TestCase):
     """TestHiveClientCase
     """
     @classmethod
-    @patch('ppytools.hive_client.hive.connect')
+    @patch('ppytools.hiveclient.hive.connect')
     def setUpClass(cls, mock_hive_conn):
         mock_hive_conn.return_value = mock.Mock(autospec=True)
         cls.hc = HiveClient('127.0.0.1', 10000, 'hive', 'default')
