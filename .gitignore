@@ -10,6 +10,7 @@ build
 
 # IDEA
 *.iml
+.idea/
 
 # MAC
 */.DS_Store
