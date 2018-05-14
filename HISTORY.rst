@@ -22,7 +22,7 @@ Features
 -----------------
 
 - Fix release bugs
-- Finish components: configure, compress, csv, email, strings, timeMeter, hive, ip2location
+- Finish components: configure, compress, csv, email, strings, timemeter, hive, ip2location
 
 Features
 *********

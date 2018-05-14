@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-from ppytools.lang.timerhelper import timeMeter
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import unicode_literals
+
+from ppytools.lang.timerhelper import timemeter
 from pyhive import hive
 
 import logging
@@ -33,7 +37,7 @@ class HiveClient(object):
             conn_args = {'host': self.host, 'port': self.port, 'username': self.user, 'database': self.db}
             try:
                 self.conn = hive.connect(**conn_args)
-            except Exception, e:
+            except Exception as e:
                 raise Exception('Get Hive server connect failed!!!', e)
 
         return self.conn
@@ -51,16 +55,17 @@ class HiveClient(object):
         else:
             cur.close()
 
-    @timeMeter()
+    @timemeter()
     def execQuery(self, sql):
         result = []
         try:
             cur = self.getConn().cursor()
             cur.execute(sql)
             for row in cur.fetchall():
-                result.append(
-                    [cell.decode('UTF-8') if cell is not None and isinstance(cell, str) else cell for cell in row])
-        except Exception, e:
+                result.append(row)
+                # result.append(
+                #     [cell.decode('UTF-8') if cell is not None and isinstance(cell, str) else cell for cell in row])
+        except Exception as e:
             raise Exception('Execute hive client query failed!!!, Case: {}'.format(str(e)))
         finally:
             self.closeCursor(cur)
@@ -70,25 +75,25 @@ class HiveClient(object):
 
         return result, records
 
-    @timeMeter()
+    @timemeter()
     def execUpdate(self, sql):
         try:
             cur = self.getConn().cursor()
             cur.execute(sql)
-        except Exception, e:
+        except Exception as e:
             raise Exception("Execute hive client update failed!!! Case: {}".format(str(e)))
         finally:
             self.closeCursor(cur)
 
         logger.info('Hive client update complete.')
 
-    @timeMeter()
+    @timemeter()
     def execCount(self, sql):
         try:
             cur = self.getConn().cursor()
             cur.execute(sql)
             count = cur.fetchone()
-        except Exception, e:
+        except Exception as e:
             raise Exception("Execute hive client count failed. Case: %s" % str(e))
         finally:
             self.closeCursor(cur)
@@ -96,3 +101,5 @@ class HiveClient(object):
         logger.info('Hive client count completed, Found %d items.', count[0])
 
         return count[0]
+
+

@@ -2,7 +2,7 @@
 # __author__ = 'elkan1788@gmail.com'
 
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
+from pip._internal.req import parse_requirements
 
 INSTALL_REQ = parse_requirements('requirements.txt', session='hack')
 REQUIRES = [str(ir.req) for ir in INSTALL_REQ]

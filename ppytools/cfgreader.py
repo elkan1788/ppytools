@@ -3,7 +3,11 @@
 
 from collections import namedtuple
 
-import ConfigParser
+try:
+    import configparser
+except ImportError:
+    from ConfigParser import SafeConfigParser as ConfigParser
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -30,9 +34,9 @@ class ConfReader(object):
         if paths is None or (not paths):
             raise ValueError('Config file paths is required!!!')
 
-        self.cp = ConfigParser.ConfigParser()
+        self.cp = configparser.ConfigParser()
         logger.debug('Found %d items config file.', len(paths))
-        result = self.cp.read(paths)
+        result = self.cp.read(paths, encoding="utf-8")
         if len(result) != len(result):
             err_cfs = list(set(paths).difference(set(result)))
             logger.error('Found %d config files were uncorrected, See below:', len(err_cfs))
@@ -50,7 +54,7 @@ class ConfReader(object):
             self.values[section] = dict()
             options = self.cp.options(section)
             for option in options:
-                value = self.cp.get(section, option, 'None')
+                value = self.cp.get(section, option)
                 self.values[section][option] = value
 
     def getSections(self):

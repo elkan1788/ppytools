@@ -25,7 +25,6 @@ class TestConfReaderCase(unittest.TestCase):
                 for (ck, cv) in v.items():
                     logger.info('%s: %s', ck, cv)
 
-
     @classmethod
     def tearDownClass(cls):
         cls.cr.getAllValues().clear()
