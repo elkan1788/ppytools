@@ -7,7 +7,6 @@ from __future__ import unicode_literals
 
 from ppytools.lang.timerhelper import timemeter
 
-import codecs
 import csv
 import logging
 
