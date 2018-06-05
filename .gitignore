@@ -2,7 +2,7 @@
 *.py[cod]
 *.so
 *.egg
-
+venv*/
 
 *.egg-info
 dist
@@ -17,4 +17,5 @@ build
 
 # Others
 atest_py.py
+atest_temp.py
 *.html

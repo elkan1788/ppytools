@@ -17,7 +17,7 @@ class TestCompressHelperCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         work_dir = os.path.dirname(os.path.realpath(__file__))
-        cls.large_file = os.path.join(work_dir, 'large_file.txt')
+        cls.large_file = os.path.join(work_dir, 'large_file中文.txt')
         with open(cls.large_file, 'wb') as tmp:
             tmp.seek(5 * 1024 * 1024)
             tmp.write(b'\x00')
@@ -28,6 +28,10 @@ class TestCompressHelperCase(unittest.TestCase):
         pref_path = cls.large_file[0:cls.large_file.rindex('.')]
         os.remove(pref_path+'.zip')
         os.remove(pref_path+'.tar.gz')
+        logger.info('Remove testing files...')
+        logger.info('%s', cls.large_file)
+        logger.info('%s.zip', pref_path)
+        logger.info('%s.tar.gz', pref_path)
 
     def testZipFile(self):
         old_size = os.path.getsize(self.large_file)

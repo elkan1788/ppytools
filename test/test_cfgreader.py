@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-from ppytools.cfgreader import ConfReader
-
 import unittest
 import logging
 import os
+import sys
+
+if sys.version_info[0] < 3:
+    from ppytools.cfgreader2 import ConfReader2 as ConfReader
+else:
+    from ppytools.cfgreader3 import ConfReader3 as ConfReader
+
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +29,6 @@ class TestConfReaderCase(unittest.TestCase):
             if isinstance(v, dict):
                 for (ck, cv) in v.items():
                     logger.info('%s: %s', ck, cv)
-
 
     @classmethod
     def tearDownClass(cls):

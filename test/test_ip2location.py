@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-from ppytools.ip2location import IP2Location
-
 import logging
 import unittest
+import sys
+
+if sys.version_info[0] < 3:
+    from ppytools.ip2location2 import IP2Location
+else:
+    from ppytools.ip2location3 import IP2Location
+
 
 logger = logging.getLogger(__name__)
 

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import unicode_literals
+
 
 def equals(s1, s2):
     """Equals 2 string parameters is true or false
@@ -10,6 +14,7 @@ def equals(s1, s2):
     :return:
     """
     return s2 is None if s1 is None else s1 == s2
+
 
 def equalsignore(s1, s2):
     """Equals 2 string parameters is true or false without word upper or lower

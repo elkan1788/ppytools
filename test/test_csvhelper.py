@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-
-from ppytools.csvhelper import write, getIdNameDict
-
 import logging
 import os
 import unittest
+import sys
+
+if sys.version_info[0] < 3:
+    from ppytools.csvhelper2 import *
+else:
+    from ppytools.csvhelper3 import *
+
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +43,8 @@ class TestCSVHelperCase(unittest.TestCase):
         self.assertEquals(len(id_name_dict), 7)
         ''' TODO
         why there dict not support use 0 as key value???
+        python3 dict keys not list type
         '''
-        self.assertEquals(id_name_dict.get(id_name_dict.keys()[0]), '中国')
+        self.assertEquals(id_name_dict.get(list(id_name_dict.keys())[0]), '中国')
+        self.assertEquals(id_name_dict.get('0'), '中国')
         self.assertEquals(id_name_dict.get('1'), 'Python')
