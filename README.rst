@@ -15,7 +15,7 @@ PPyTools
 
 **`PPyTools`** this name make by myself. It's group by `PP`(my lover's name first word) + `Py`(Python abbr)  + `Tools`.
 
-**PPyTools** is a Python library(only 2 now) utility that in **Python** project. Hope it can help you usefully on work or others.
+**PPyTools** is a Python library(2.7+) utility that in **Python** project. Hope it can help you usefully on work or others.
  
  
 Test Report

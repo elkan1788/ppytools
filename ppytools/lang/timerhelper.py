@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import unicode_literals
+
 import functools
 import logging
 import timeit
@@ -8,7 +12,7 @@ import timeit
 logger = logging.getLogger(__name__)
 
 
-def timeMeter(msg=None):
+def timemeter(msg=None):
     """Timer meter
 
         Use this annotation method can calculate the execute time.

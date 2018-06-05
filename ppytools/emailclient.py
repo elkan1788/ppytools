@@ -1,21 +1,24 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-from excepts.emailexcept import *
-from lang import strings
-from ppytools.compresshelper import zipFile
-from ppytools.lang.timerhelper import timeMeter
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import unicode_literals
 
-import email.MIMEBase
-import email.MIMEMultipart
-import email.MIMEText
+from email.mime.base import MIMEBase
+from email.encoders import encode_base64
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.header import Header
+from email.utils import formatdate
+from excepts.emailexcept import *
+from ppytools.lang import strings
+from ppytools.compresshelper import zipFile
+from ppytools.lang.timerhelper import timemeter
+
 import logging
 import os
 import smtplib
-import sys
-
-reload(sys)
-sys.setdefaultencoding('UTF-8')
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +51,6 @@ class EmailClient(object):
         self.smtp_pswd   = passwd
         self.smtp_mode   = mode
         self.smtp_conn   = None
-        self.__login__()
 
     def __login__(self):
         """Login email SMTP server under different mode
@@ -92,27 +94,27 @@ class EmailClient(object):
 
                 with open(att_path, 'rb') as att_tmp:
                     try:
-                        att_file = email.MIMEBase.MIMEBase(maintype, subtype)
+                        att_file = MIMEBase(maintype, subtype)
                         att_file.set_payload(att_tmp.read())
-                        email.Encoders.encode_base64(att_file)
+                        encode_base64(att_file)
                         att_file.add_header('Content-Disposition', 'attachment',
-                                            filename=os.path.basename(att_path).encode('UTF-8'))
+                                            filename=(CHARSET_ENCODING, '', os.path.basename(att_path)))
                         email_cnt.attach(att_file)
-                    except Exception, e:
+                    except Exception as e:
                         raise AppendEmailAttException('Append email attach[%s] failed!!! Case: %s', att_path, str(e))
 
             self._del_files.extend(att)
             if delete:
                 for path in self._del_files:
                     try:
-                        os.remove(path.decode('UTF-8'))
-                    except IOError, e:
+                        os.remove(path)
+                    except IOError as e:
                         raise DeleteEmailAttException('Delete email attach[%s] failed!!! Case: %s', path, str(e))
                 '''flush memory
                 '''
                 self._del_files[:] = []
 
-    @timeMeter()
+    @timemeter()
     def send(self, to, cc, subject, body, atts=None, delete=False):
         """Send an email action.
 
@@ -124,24 +126,24 @@ class EmailClient(object):
         :param delete: whether delete att
         :return: True or False
         """
-        email_cnt = email.MIMEMultipart.MIMEMultipart()
-        email_cnt['From'] = self.smtp_user
-        email_cnt['To'] = ';'.join(to)
-        email_cnt['Cc'] = ';'.join(cc)
-        email_cnt['Subject'] = subject.encode(CHARSET_ENCODING)
-        email_cnt['Date'] = email.Utils.formatdate()
-        body_html = email.MIMEText.MIMEText(body.encode(CHARSET_ENCODING), _subtype='html', _charset=CHARSET_ENCODING)
-        email_cnt.attach(body_html)
+        email_cnt = MIMEMultipart()
+        email_cnt['From'] = Header(self.smtp_user, CHARSET_ENCODING)
+        email_cnt['To'] = Header(';'.join(to), CHARSET_ENCODING)
+        email_cnt['Cc'] = Header(';'.join(cc), CHARSET_ENCODING)
+        email_cnt['Subject'] = Header(subject, CHARSET_ENCODING)
+        email_cnt['Date'] = formatdate()
+        email_cnt.attach(MIMEText(body, 'html', CHARSET_ENCODING))
 
         self.__add_att__(email_cnt, atts, delete)
 
         try:
+            self.__login__()
             self.smtp_conn.sendmail(self.smtp_user, to+cc, email_cnt.as_string())
 
             with_att_msg = 'Empty'
             if atts:
-                for i,att  in enumerate(atts):
-                    atts[i] = att[att.rindex('/')+1:]
+                for i, att in enumerate(atts):
+                    atts[i] = att[att.startswith('/')+1:]
 
                 with_att_msg = ','.join(atts)
                 '''Flush memory
@@ -151,7 +153,7 @@ class EmailClient(object):
             logger.info('Send email[%s] success.', subject)
             logger.info('To users: %s.', ','.join(to+cc))
             logger.info('With attachments: %s.', with_att_msg)
-        except Exception, e:
+        except Exception as e:
             raise SendEmailException("Send email[%s] failed!!! Case: %s" % (subject, str(e)))
 
     def quit(self):

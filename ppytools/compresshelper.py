@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import unicode_literals
+
 import logging
 import os
 import tarfile
@@ -15,14 +19,14 @@ def zipFile(source):
     :param source: source file path
     :return: zip file path
     """
-    source = source.decode('UTF-8')
+    # source = source.decode('UTF-8')
     target = source[0:source.rindex(".")] + '.zip'
     try:
         with zipfile.ZipFile(target, 'w') as zip_file:
-            zip_file.write(source, source[source.rindex('/'):], zipfile.ZIP_DEFLATED)
+            zip_file.write(source, source[source.startswith('/'):], zipfile.ZIP_DEFLATED)
             zip_file.close()
             __cps_rate__(source, target)
-    except IOError, e:
+    except IOError as e:
         logger.error('Compress file[%s] with zip mode failed. Case: %s', source, str(e))
         target = source
 
@@ -36,14 +40,14 @@ def tarFile(source):
     :param source: source file path
     :return: zip file path
     """
-    source = source.decode('UTF-8')
+    # source = source.decode('UTF-8')
     target = source[0:source.rindex('.')] + '.tar.gz'
 
     try:
         with tarfile.open(target, "w:gz") as tar_file:
-            tar_file.add(source, arcname=source[source.rindex("/"):])
+            tar_file.add(source, arcname=source[source.startswith("/"):])
             __cps_rate__(source, target)
-    except IOError, e:
+    except IOError as e:
         logger.error('Compress file[%s] with zip mode failed. Case: %s', source, str(e))
         target = source
 

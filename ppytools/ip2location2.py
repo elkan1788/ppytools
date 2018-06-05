@@ -10,9 +10,9 @@ import collections
 
 Location = collections.namedtuple('Location', ['id', 'country', 'region', 'province', 'city', 'op'])
 
+
 class IP2Location(object):
     """IP2Location python client module
-
     """
     __headerSip = []
     __headerPtr = []
@@ -247,5 +247,3 @@ class IP2Location(object):
         self.__headerPtr = None
         self.__f.close()
         self.__f         = None
-
-

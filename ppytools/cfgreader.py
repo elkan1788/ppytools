@@ -3,7 +3,6 @@
 
 from collections import namedtuple
 
-import ConfigParser
 import logging
 
 logger = logging.getLogger(__name__)
@@ -27,20 +26,7 @@ class ConfReader(object):
         :exception
             ValueError: An error occurred the config file path is none or empty.
         """
-        if paths is None or (not paths):
-            raise ValueError('Config file paths is required!!!')
-
-        self.cp = ConfigParser.ConfigParser()
-        logger.debug('Found %d items config file.', len(paths))
-        result = self.cp.read(paths)
-        if len(result) != len(result):
-            err_cfs = list(set(paths).difference(set(result)))
-            logger.error('Found %d config files were uncorrected, See below:', len(err_cfs))
-            for path in err_cfs:
-                logger.error(path)
-
-        self.values = dict()
-        self.__set_values__()
+        pass
 
     def __set_values__(self):
         """Parse all config files's key,value
@@ -50,7 +36,7 @@ class ConfReader(object):
             self.values[section] = dict()
             options = self.cp.options(section)
             for option in options:
-                value = self.cp.get(section, option, 'None')
+                value = self.cp.get(section, option)
                 self.values[section][option] = value
 
     def getSections(self):
