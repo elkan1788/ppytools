@@ -7,11 +7,15 @@ import HTMLTestRunner
 import logging
 import os
 import unittest
+import sys
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s [%(levelname)s] {%(name)-10s} - %(message)s')
 
+logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
+
+    logger.info('Python ENV: %s', sys.version_info)
 
     suite = TestSuite()
     suites = unittest.defaultTestLoader.discover('./', pattern='test_*')

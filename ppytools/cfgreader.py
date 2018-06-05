@@ -16,7 +16,7 @@ class ConfReader(object):
          values: Sections's value dict
     """
 
-    def __init__(self):
+    def __init__(self, *paths):
         """Init config reader
             Read config files's path then put all values into a dict.
             When path not correct will output by logger err.

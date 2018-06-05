@@ -1,10 +1,6 @@
 # -*- -*- coding: utf-8 -*- -*-
 # __author__ = 'elkan1788@gmail.com'
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import unicode_literals
-
 from ppytools.lang.timerhelper import timemeter
 
 import csv

@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'elkan1788@gmail.com'
 
-
-from ppytools.csvhelper import write, getIdNameDict
-
 import logging
 import os
 import unittest
+import sys
+
+if sys.version_info[0] < 3:
+    from ppytools.csvhelper2 import *
+else:
+    from ppytools.csvhelper3 import *
+
 
 logger = logging.getLogger(__name__)
 
