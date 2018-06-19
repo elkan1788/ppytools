@@ -19,3 +19,4 @@ build
 atest_py.py
 atest_temp.py
 *.html
+.pypirc
